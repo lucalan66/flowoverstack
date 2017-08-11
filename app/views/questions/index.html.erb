@@ -1,0 +1,24 @@
+<h1>FlowOverStack</h1>
+
+<table> 
+	<head> 
+		<th>
+			Preguntas
+		</th>
+		<th>
+			Ultima Modificacion
+		</th>
+	</head>
+	<body>
+		<% @questions.each do |question| %>
+		<tr>
+		<td><%= link_to question.title, question %></td>
+		<td><%= question.updated_at %></td>
+		<!-- <td><%= question.user %></td> -->
+		</tr>
+		<% end %>
+	</body>
+</table>
+
+
+<%= link_to 'new', new_question_path %>

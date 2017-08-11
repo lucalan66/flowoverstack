@@ -1,0 +1,6 @@
+
+<%= form_for @question, url: questions_path do |f|%>
+  Title: <%= f.text_field :title %>
+  Content: <%= f.text_field :content %>
+  <%= submit_tag %>
+<% end %>
