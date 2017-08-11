@@ -2,23 +2,33 @@
 
 <table> 
 	<head> 
+		<th></th>
+		<th></th>
 		<th>
-			Preguntas
+			Question
 		</th>
 		<th>
-			Ultima Modificacion
+			User
+		</th>
+		<th>
+			Modified
 		</th>
 	</head>
 	<body>
 		<% @questions.each do |question| %>
 		<tr>
-		<td><%= link_to question.title, question %></td>
-		<td><%= question.updated_at %></td>
-		<!-- <td><%= question.user %></td> -->
+			<td> Votes <%= question.votes.count %></td>
+			<td> Answers <%= question.answers.count %></td>
+			<td><%= link_to question.title, question %></td>
+			<td><%= question.user.email %></td>
+			<td><%= question.updated_at %></td>
+			<% if current_user.email == question.user.email %> 
+			<td><%= link_to 'edit', edit_question_path(question) %></td>
+			<% end %>
 		</tr>
 		<% end %>
 	</body>
 </table>
 
 
-<%= link_to 'new', new_question_path %>
+<h2> <%= link_to 'new question', new_question_path %> </h2>
