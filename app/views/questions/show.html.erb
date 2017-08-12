@@ -4,9 +4,13 @@
 
 <p><%= link_to 'edit', edit_question_path %></p>
 
-<% debugger %> 
+
 <% @answers.each do |answer| %>
-<p> <%= answer.content %> </p>
+<div> 
+	<span><%= answer.content %></span> 
+	
+	<span><%= answer.user.email %></span> 
+</div>
 <% end %>
 
 <% if user_signed_in? %>
