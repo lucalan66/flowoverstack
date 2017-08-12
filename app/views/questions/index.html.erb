@@ -22,9 +22,12 @@
 			<td><%= link_to question.title, question %></td>
 			<td><%= question.user.email %></td>
 			<td><%= question.updated_at %></td>
-			<% if current_user.email == question.user.email %> 
-			<td><%= link_to 'edit', edit_question_path(question) %></td>
+			<% if user_signed_in? %> 
+				<% if current_user.id == question.user.id %> 
+				<td><%= link_to 'edit', edit_question_path(question) %></td>
+				<% end %>
 			<% end %>
+
 		</tr>
 		<% end %>
 	</body>
@@ -32,3 +35,10 @@
 
 
 <h2> <%= link_to 'new question', new_question_path %> </h2>
+
+<% if user_signed_in? %>
+<h2> <%= link_to 'log out', destroy_user_session_path, method: :delete %> </h2>
+<% else %>
+<h2> <%= link_to 'log in', new_user_session_path %> </h2>
+<% end %>
+

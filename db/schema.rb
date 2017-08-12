@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809220831) do
+ActiveRecord::Schema.define(version: 20170811232544) do
 
   create_table "answers", force: :cascade do |t|
     t.text "content"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 20170809220831) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+# Could not dump table "sqlite_stat1" because of following StandardError
+#   Unknown type '' for column 'tbl'
+
+# Could not dump table "sqlite_stat4" because of following StandardError
+#   Unknown type '' for column 'tbl'
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -60,7 +66,7 @@ ActiveRecord::Schema.define(version: 20170809220831) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer "votes"
+    t.integer "count"
     t.string "votable_type"
     t.integer "votable_id"
     t.integer "user_id"

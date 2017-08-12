@@ -1,3 +1,20 @@
 <h1><%= @question.title %></h1>
 <p><%=  @question.content %></p>
+
+
 <p><%= link_to 'edit', edit_question_path %></p>
+
+<% debugger %> 
+<% @answers.each do |answer| %>
+<p> <%= answer.content %> </p>
+<% end %>
+
+<% if user_signed_in? %>
+	<%= form_for Answer.new, url: question_answers_path(@question) do |f|%>
+	<%= f.label "Write your answer: " %>
+	 <%= f.text_field :content %>
+	<%= submit_tag %>
+	<% end %>
+<% end %>
+
+
