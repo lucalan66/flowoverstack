@@ -1,0 +1,10 @@
+<h1>Questions#new</h1>
+<p>Find me in app/views/questions/new.html.erb</p>
+
+
+
+<%= form_for Question.new, url: questions_path, remote: true do |f|%>
+  Title: <%= f.text_field :title %>
+  Content: <%= f.text_field :content %>
+  <%= submit_tag %>
+<% end %>
