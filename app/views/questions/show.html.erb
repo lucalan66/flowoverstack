@@ -1,24 +1,43 @@
 <h1><%= @question.title %></h1>
-<p><%=  @question.content %></p>
+<p><h1><%=  @question.content %></h1></p>
 
 
-<p><%= link_to 'edit', edit_question_path %></p>
+
+<% 	@question.comments.each do |comment| %>
+<div> 
+<h1><%= comment.content %></h1>
+<p><h1><%=  comment.user.email %></h1></p>
+</div> 
+<% end %>
+
+
+<% if user_signed_in? %>
+<%= form_for Comment.new, url: question_comments_path(@question) do |f|%>
+<%= f.label "Write your question comment: " %>
+<%= f.text_field :content %>
+<%= submit_tag %>
+<% end %>
+<% end %>
+
+
+
 
 
 <% @answers.each do |answer| %>
 <div> 
 	<span><%= answer.content %></span> 
 	
-	<span><%= answer.user.email %></span> 
+	<span><%= answer.user.email %></span> <br>
+
 </div>
 <% end %>
 
 <% if user_signed_in? %>
-	<%= form_for Answer.new, url: question_answers_path(@question) do |f|%>
-	<%= f.label "Write your answer: " %>
-	 <%= f.text_field :content %>
-	<%= submit_tag %>
-	<% end %>
+<%= form_for Answer.new, url: question_answers_path(@question) do |f|%>
+<%= f.label "Write your answer: " %>
+<%= f.text_field :content %>
+<%= submit_tag %>
+<% end %>
 <% end %>
 
 

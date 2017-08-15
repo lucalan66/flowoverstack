@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-  	@question = current_user.questions.create!(question_params)
+  	@question = current_user.questions.create(question_params)
   	redirect_to action: "index"
   end
 
